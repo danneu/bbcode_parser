@@ -1,0 +1,15 @@
+.underline { 
+  text-decoration: underline; 
+}
+.quote {
+  border: 1px solid black;
+  margin: 10px;
+  .quote-original-poster { 
+    padding: 5px;
+    border-bottom: 1px solid black; 
+  }
+  .quote-text {
+    padding: 5px;
+  }
+}
+

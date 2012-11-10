@@ -1,11 +1,11 @@
-require 'parslet'
+require "parslet"
 
 class BBCodeTransformer < Parslet::Transform
-  rule(option: simple(:str)) { String(str) }
-  rule(open: simple(:tr)) { String(tr) }
-  rule(text: simple(:text)) { String(text) }
-  rule(break: simple(:br)) { "<br />" }
-  rule(breaks: sequence(:brs)) { brs.join }
+  rule(option: simple(:str))    { String(str) }
+  rule(open: simple(:tr))       { String(tr) }
+  rule(text: simple(:text))     { String(text) }
+  rule(break: simple(:br))      { "<br />" }
+  rule(breaks: sequence(:brs))  { brs.join }
   rule(
     open: simple(:name),
     options: sequence(:options),
