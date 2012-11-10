@@ -34,11 +34,11 @@ class BBCode < Parslet::Parser
     #rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> whitespace.maybe }
   # Just consume up to two newlines to still let user add more spacing. 
   rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> (space | newline.repeat(1,2)).maybe }
-  rule(:open) { str('[') >> tag.as(:open) >> options?.as(:options) >> str(']') }
+  rule(:open) { str('[') >> tag.as(:open) >> options?.as(:options) >> str(']') >> (space | newline.repeat(1)).maybe }
   rule(:close) { block_close | inline_close }
     
 
-  rule(:block) { (open >> (block | text).repeat.as(:inner) >> close) }
+  rule(:block) { (open >> (block | text >> (space | newline.repeat(1)).maybe).repeat.as(:inner) >> close) }
   rule(:body) { (block | text).repeat.as(:body) }
   root(:body)
 

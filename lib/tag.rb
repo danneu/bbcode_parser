@@ -18,7 +18,12 @@ class Tag
       if options.count == 0
         %{
         <div class="quote">
-          #{text}
+          <div class="quote-original-poster">
+            Quote:
+          </div>
+          <div class="quote-text">
+            #{text}
+          </div>
         </div>
         }
       elsif options.count == 1
