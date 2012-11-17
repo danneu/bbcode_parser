@@ -25,7 +25,7 @@ class BBCode < Parslet::Parser
   rule(:tag_name)    { match['a-zA-Z'].repeat(1) }
   #rule(:text){ (match["a-zA-Z\.\:\,\"\!\'"] | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
   #rule(:text){ (printable_char | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
-  rule(:text){ (close.absent? >> printable_char | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
+  rule(:text){ (close.absent? >> block.absent? >> printable_char | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
 
   rule(:inline_tag) { b | i | url | u | s | color | font }
   rule(:block_tag) { quote | left | right | center }
