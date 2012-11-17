@@ -1,6 +1,7 @@
 # Ruby BBCode Parser
 
 * Work in progress
+* Never wrote a parser before so I'm figuring it out as I go
 * Live demo: [http://bbcode.herokuapp.com][demo]
 * PEG Parser built with [Parslet](http://kschiess.github.com/parslet/)
 * Intended to reasonably emulate vBulletin's BBCode
