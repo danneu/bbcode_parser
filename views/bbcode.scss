@@ -1,7 +1,13 @@
 .rendered {
 
   // underline
-  .underline { text-decoration: underline; }
+  .underline { 
+    text-decoration: underline; 
+  }
+  // strikethrough
+  .strikethrough {
+    text-decoration: line-through;
+  }
 
   // quote
   .quote {

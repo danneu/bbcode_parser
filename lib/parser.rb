@@ -1,11 +1,11 @@
 require 'parslet'
 
 class BBCode < Parslet::Parser
-  TAGS = %w[b i u font quote color left right center url]
+  TAGS = %w[b i u s font quote color left right center url]
+
   rule(:space) { str(' ').repeat(1) }
   rule(:space?) { space.maybe }
   rule(:newline) { (str("\r\n") | str("\n")) >> space? }
-  #rule(:newline) { (str("\r\n") | str("\n")) }
   rule(:whitespace) { (space | newline).repeat(1) }
 
   # === BBCODE OPTIONS ===
@@ -19,22 +19,36 @@ class BBCode < Parslet::Parser
   # === STRINGS - ALLOWED CHARACTERS ===
   rule(:tag_options) { match['a-zA-Z0-9 '].repeat(1) }
   rule(:tag_name)    { match['a-zA-Z'].repeat(1) }
-  #rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | ((br.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
-  rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
-
-  #rule(:close) { str('[/') >> tag_name.as(:close) >> str(']') }
+  rule(:text){ (match["a-zA-Z\.\:\,\"\!\'"] | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
 
   TAGS.each do |bbcode|
     rule(bbcode.to_sym) { str(bbcode) } 
   end
-  rule(:inline_tag) { b | i | url | u | color | font }
+  rule(:inline_tag) { b | i | url | u | s | color | font }
   rule(:block_tag) { quote | left | right | center }
   rule(:tag) { inline_tag | block_tag }
   rule(:inline_close) { str('[/') >> inline_tag.as(:close) >> str(']') }
-  # We distinguish between inline [b][/b] tags and block [quote][/quote] tags so
-  # that block tags eat a few newlines.
-    #rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> whitespace.maybe }
-  # Just consume up to two newlines to still let user add more spacing. 
+
+  # We distinguish between inline [b][/b] tags and block [quote][/quote] tags 
+  # so that block tags eat newlines instead of replacing them with <br>. 
+  # This is because users don't intend to add linebreaks when they're just
+  # spacing out their text after a block:
+  #
+  # +---Example Post 1------------+
+  # | [quote=Barack Obama]        | <div class="quote">
+  # |   I am the president.       |   I am the president
+  # | [/quote]                    | </div> <-- User didn't intend for additional vertical spacing 
+  # |                             | I agree!
+  # | I agree!                    |
+  # +-----------------------------+
+  # +---Example Post 2------------+
+  # | [b]I am the president.[/b]  | <strong>I am the president.</strong>
+  # |                             | <br /><br /> <-- User intended this vertical spacing
+  # | I agree!                    | I agree!
+  # |                             |
+  # |                             |
+  # +-----------------------------+
+
   rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> (space | newline.repeat(1)).maybe }
   rule(:open) { str('[') >> tag.as(:open) >> options?.as(:options) >> str(']') >> (space | newline.repeat(1)).maybe }
   rule(:close) { block_close | inline_close }
