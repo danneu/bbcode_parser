@@ -143,6 +143,74 @@ Some quoted text.
         </div>
       </td>
     </tr>
+
+    <!-- [s] -->
+    <tr>
+      <td><pre>[s]strikethrough text[/s]</pre></td>
+      <td>Strikethrough</td>
+      <td><pre><%=h "
+<span class='strikethrough'>
+  strikethrough text
+</span>" %></pre></td>
+      <td class="rendered">
+        <span class='strikethrough'>strikethrough text</span>
+      </td>
+    </tr>
+
+    <!-- [color] -->
+    <tr>
+      <td><pre>[color=blue]
+colored text
+[/color]</pre></td>
+      <td>Color</td>
+      <td><pre><%=h "
+<span style='color: {color};'>
+  colored text
+</span>" %></pre></td>
+      <td class="rendered">
+        <span style='color: blue;'>colored text</span>
+      </td>
+    </tr>
+
+    <!-- [left] -->
+    <tr>
+      <td><pre>[left]left-aligned text[/left]</pre></td>
+      <td>Left-alignment</td>
+      <td><pre><%=h "
+<div class='align-left'>
+  left-aligned text
+</div>" %></pre></td>
+      <td class="rendered">
+        <div class='align-left'>left-aligned text</div>
+      </td>
+    </tr>
+
+    <!-- [right] -->
+    <tr>
+      <td><pre>[right]right-aligned text[/right]</pre></td>
+      <td>Right-alignment</td>
+      <td><pre><%=h "
+<div class='align-right'>
+  right-aligned text
+</div>" %></pre></td>
+      <td class="rendered">
+        <div class='align-right'>right-aligned text</div>
+      </td>
+    </tr>
+
+    <!-- [center] -->
+    <tr>
+      <td><pre>[center]center-aligned text[/center]</pre></td>
+      <td>Center-alignment</td>
+      <td><pre><%=h "
+<div class='align-center'>
+  center-aligned text
+</div>" %></pre></td>
+      <td class="rendered">
+        <div class='align-center'>center-aligned text</div>
+      </td>
+    </tr>
+
 </table>
 <a class="toggle-cheatsheet toggleable" href="#">Hide Cheatsheet</a>
 </div>
