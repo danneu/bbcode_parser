@@ -1,5 +1,25 @@
+.subtitle {
+  &:before { content: "("; }
+  &:after  { content: ")"; }
+  font-size: 75%;
+  color: #999;
+}
+pre { margin: 0; }
 textarea { width: 50%; display: block; }
-.output       { padding: 10px; }
-.html         { background: #ccc; }
-.rendered     { border: 1px solid black; }
+.output { 
+  padding: 10px; 
+}
 .tree-ap { pre { display: inline; } }
+.output {
+  border: solid black 1px;
+  background: white;
+}
+.group {
+  background: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  h2 { 
+    color: white; 
+    margin: 0 0 5px 0;
+  }
+}

@@ -17,41 +17,42 @@ class Tag
     when "quote" 
       if options.count == 0
         %{
-        <div class="quote">
-          <div class="quote-original-poster">
-            Quote:
-          </div>
-          <div class="quote-text">
-            #{text}
-          </div>
-        </div>
+<div class="quote">
+  <div class="quote-original-poster">
+    Quote:
+  </div>
+  <div class="quote-text">
+    #{text}
+  </div>
+</div>
         }
       elsif options.count == 1
         %{
-        <div class="quote">
-          <div class="quote-original-poster">
-            Originally posted by #{options.first}
-          </div>
-          <div class="quote-text">
-            #{text}
-          </div>
-        </div>
+<div class="quote">
+  <div class="quote-original-poster">
+    Originally posted by #{options.first}
+  </div>
+  <div class="quote-text">
+    #{text}
+  </div>
+</div>
         }
         #}.split("\n").map(&:strip).join
       elsif options.count == 2
         %{
-        <div class="quote">
-          <div class="quote-original-poster">
-            Originally posted by <a href="#">#{options.first}</a> (<a href="#{options.last}">Go to post</a>)
-          </div>
-          <div class="quote-text">
-            #{text}
-          </div>
-        </div>
-        }.each_line.map { |l| l[8..-1] }.join
+<div class="quote">
+  <div class="quote-original-poster">
+    Originally posted by <a href="#">#{options.first}</a> (<a href="#{options.last}">Go to post</a>)
+  </div>
+  <div class="quote-text">
+    #{text}
+  </div>
+</div>
+        }
+        #}.each_line.map { |l| l[8..-1] }.join
         #}.split("\n").map(&:strip).join
       end
-    end
-  end
+    end # /case
+  end # /def
 
 end

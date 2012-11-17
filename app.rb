@@ -21,10 +21,12 @@ end
 
 get("/stylesheet.css") { scss :stylesheet }
 get("/bbcode.css")     { scss :bbcode }
+get("/syntax.css")     { scss :syntax }
 get "/" do
-  @bbcode = params[:bbcode]
-  @tree = tree(@bbcode)
-  @html = parse(@bbcode) if @bbcode
+  if @bbcode = params[:bbcode]
+    @tree = tree(@bbcode) 
+    @html = parse(@bbcode) 
+  end
   scss :stylesheet, :style => :expanded
   erb :index
 end

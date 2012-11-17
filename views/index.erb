@@ -2,29 +2,40 @@
   <textarea rows=10 name="bbcode" placeholder="Insert BBCode"><%= @bbcode %></textarea>
   <input type="submit" value="Convert to HTML" />
 </form>
+
 <hr />
 
-<h2>HTML</h2>
-<pre class="output html">
-  <%=h @html %>
-</pre>
-
-<h2>Rendered</h2>
-<div class="output rendered">
-  <%= @html %>
+<div class="group">
+  <h2>HTML</h2>
+  <pre class="highlight">
+    <code data-language="html">
+<%=h @html %>
+    </code>
+  </pre>
 </div>
 
-<h2>Syntax Tree (pp)</h2>
-<pre class="output tree">
-  <% old_stdout, $> = $>, StringIO.new %>
-  <% pp(@tree)  %>
-  <%=h $>.string %>
-</pre>
+<div class="group">
+  <h2>Rendered <span class="subtitle">What the HTML looks like when drawn by the browser</span></h2>
+  <div class="output rendered">
+    <%= @html %>
+  </div>
+</div>
 
-<h2>Syntax Tree (awesome_print)</h2>
-<div class="output tree-ap">
-  <% $>.rewind %>
-  <% ap(@tree, {html: true, index: false, color: {hash: :blue}})  %>
-  <%= $>.string %>
-  <% $> = old_stdout %>
+<div class="group">
+  <h2>Syntax Tree <span class="subtitle">pp</span></h2>
+  <pre class="output tree">
+    <% old_stdout, $> = $>, StringIO.new %>
+    <% pp(@tree)  %>
+    <%=h $>.string %>
+  </pre>
+</div>
+
+<div class="group">
+  <h2>Syntax Tree <span class="subtitle">awesome_print</span></h2>
+  <div class="output tree-ap">
+    <% $>.rewind %>
+    <% ap(@tree, {html: true, index: false, color: {hash: :blue}})  %>
+    <%= $>.string %>
+    <% $> = old_stdout %>
+  </div>
 </div>

@@ -10,7 +10,7 @@ class BBCodeTransformer < Parslet::Transform
     open: simple(:name),
     options: sequence(:options),
     inner: sequence(:inner),
-    close: simple(:close)
+    close: simple(:name)
   ) { Tag.new(name.to_s, options).wrap(inner.join) }
   rule(body: sequence(:strings)) { strings.join }
 end

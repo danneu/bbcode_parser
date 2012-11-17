@@ -4,6 +4,7 @@ class BBCode < Parslet::Parser
   rule(:space) { str(' ').repeat(1) }
   rule(:space?) { space.maybe }
   rule(:newline) { (str("\r\n") | str("\n")) >> space? }
+  #rule(:newline) { (str("\r\n") | str("\n")) }
   rule(:whitespace) { (space | newline).repeat(1) }
 
   # === BBCODE OPTIONS ===
@@ -17,7 +18,7 @@ class BBCode < Parslet::Parser
   # === STRINGS - ALLOWED CHARACTERS ===
   rule(:tag_options) { match['a-zA-Z0-9 '].repeat(1) }
   rule(:tag_name)    { match['a-zA-Z'].repeat(1) }
-  rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | newline.as(:break).repeat(1).as(:breaks) }
+  rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | (((str("\r\n") | str("\n")).as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
 
   #rule(:close) { str('[/') >> tag_name.as(:close) >> str(']') }
 
@@ -33,18 +34,18 @@ class BBCode < Parslet::Parser
   # that block tags eat a few newlines.
     #rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> whitespace.maybe }
   # Just consume up to two newlines to still let user add more spacing. 
-  rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> (space | newline.repeat(1,2)).maybe }
+  rule(:block_close){ str('[/') >> block_tag.as(:close) >> str(']') >> (space | newline.repeat(1)).maybe }
   rule(:open) { str('[') >> tag.as(:open) >> options?.as(:options) >> str(']') >> (space | newline.repeat(1)).maybe }
   rule(:close) { block_close | inline_close }
     
 
-  rule(:block) { (open >> (block | text >> (space | newline.repeat(1)).maybe).repeat.as(:inner) >> close) }
+  rule(:block) { (open >> (block | text >> (space | newline.repeat(1)).maybe).repeat.as(:inner) >> whitespace.maybe >> close) }
   rule(:body) { (block | text).repeat.as(:body) }
   root(:body)
 
   def self.parse(str)
     new.parse(str)
   rescue Parslet::ParseFailed => failure
-    #failure.cause.ascii_tree
+    puts failure.cause.ascii_tree
   end
 end
