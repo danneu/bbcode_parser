@@ -4,3 +4,12 @@
 <link rel="stylesheet" type="text/css" href="syntax.css" />
 <h1>BBCode → HTML</h1>
 <%= yield %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+  $(function() {
+    $(".toggle-cheatsheet").click(function(e) {
+      e.preventDefault();
+      $(".toggleable").toggle();
+    });
+  });
+</script>

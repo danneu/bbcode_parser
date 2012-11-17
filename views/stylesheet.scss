@@ -21,3 +21,26 @@ textarea { width: 50%; display: block; }
     margin: 0 0 5px 0;
   }
 }
+.toggleable {
+  display: none;
+}
+table#cheatsheet {
+  width: 90%;
+  margin: 10px auto;
+  tr:nth-child(even) { background-color: #ccc; }
+  tr:nth-child(odd) { background-color: white; }
+  th { 
+    border-bottom: 1px solid black; 
+    color: white;
+    background: black;
+    padding: 5px;
+  }
+  td {
+    padding: 5px;
+  }
+}
+#cheatsheet-panel {
+  margin-top: 10px;
+  background: #C1F0F6;
+  padding: 10px;
+}

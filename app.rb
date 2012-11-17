@@ -35,6 +35,5 @@ get "/" do
     @html = parse(@bbcode)
     @highlighted_html = highlight(@html)
   end
-  scss :stylesheet, :style => :expanded
   erb :index
 end

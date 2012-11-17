@@ -6,6 +6,7 @@ GEM
     coderay (1.0.8)
     daemons (1.1.9)
     eventmachine (1.0.0)
+    nokogiri (1.5.5)
     parslet (1.4.0)
       blankslate (~> 2.0)
     rack (1.4.1)
@@ -30,6 +31,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   coderay
+  nokogiri
   parslet
   sass
   shotgun

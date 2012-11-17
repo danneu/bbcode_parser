@@ -3,15 +3,13 @@
   <input type="submit" value="Convert to HTML" />
 </form>
 
-<div id="cheatsheet-panel">
-<a class="toggle-cheatsheet" href="#">Toggle Cheatsheet</a>
-<table id="cheatsheet" class="toggleable" cellspacing=0>
-  <caption>Supported BBCode so far</caption>
+<table id="cheatsheet" cellspacing=10>
+  <caption>BBCode Cheatsheet</caption>
   <colgroup>
-    <col style="width: 16%">
-    <col style="width: 16%">
-    <col style="width: 16%">
-    <col style="width: 50%">
+    <col style="width: 10%">
+    <col style="width: 10%">
+    <col style="width: 10%">
+    <col style="width: 70%">
   </colgroup>
   <tr class="headers">
     <th>BBCode</th>
@@ -40,16 +38,12 @@
     <tr>
       <td><pre>[u]underlined text[/u]</pre></td>
       <td>Underline</td>
-      <td><pre><%=h "
-<span class='underline'>
-  underlined text
-</span>" %></pre></td>
+      <td><pre><%=h "<span class='underline'>underlined text</span>" %></pre></td>
       <td class="rendered">
         <span class='underline'>underlined text</span>
       </td>
     </tr>
 
-    <!-- [quote] -->
     <tr>
       <td><pre>[quote]text[/quote]</pre></td>
       <td>Quote</td>
@@ -76,72 +70,12 @@
         </div>
       </td>
     </tr>
-
-    <!-- [quote=User Name] -->
-    <tr>
-      <td><pre>[quote=Barack Obama]
-Some quoted text.
-[/quote]</pre></td>
-      <td>Quote with reference to quoted username</td>
-      <td><pre>
-          <%=h %{ 
-<div class="quote">
-  <div class="quote-original-poster">
-    Originally posted by 
-    <a href="#">Barack Obama</a>
-  </div>
-  <div class="quote-text">
-    Some quoted text.<br />
-  </div>
-</div>
-          } %>
-      </pre></td>
-      <td class="rendered">
-        <div class="quote">
-          <div class="quote-original-poster">
-            Originally posted by <a href="#">Barack Obama</a>
-          </div>
-          <div class="quote-text">
-            Some quoted text.<br />
-          </div>
-        </div>
-      </td>
-    </tr>
-
-    <!-- [quote=User Name;4567] -->
-    <tr>
-      <td><pre>[quote=Barack Obama;4567]
-Some quoted text.
-[/quote]</pre></td>
-      <td>Quote with reference to quoted username and post ID</td>
-      <td><pre>
-          <%=h %{ 
-<div class="quote">
-  <div class="quote-original-poster">
-    Originally posted by 
-    <a href="#">Barack Obama</a> 
-    (<a href="posts/4567">Go to post</a>)
-  </div>
-  <div class="quote-text">
-    Some quoted text.<br />
-  </div>
-</div>
-          } %>
-      </pre></td>
-      <td class="rendered">
-        <div class="quote">
-          <div class="quote-original-poster">
-            Originally posted by <a href="#">Barack Obama</a> (<a href="posts/4567">Go to post</a>)
-          </div>
-          <div class="quote-text">
-            Some quoted text.<br />
-          </div>
-        </div>
-      </td>
-    </tr>
 </table>
-<a class="toggle-cheatsheet toggleable" href="#">Hide Cheatsheet</a>
-</div>
+<ul>
+  <li>[quote][/quote]: Quote</li>
+  <li>[quote=User Name]: Quote with reference to quoted username</li>
+  <li>[quote=User Name;92384]: Quote with reference to quoted username and post ID</li>
+</ul>
 
 <hr />
 

@@ -30,7 +30,7 @@ class Tag
         %{
 <div class="quote">
   <div class="quote-original-poster">
-    Originally posted by #{options.first}
+    Originally posted by <a href="#">#{options.first}</a>
   </div>
   <div class="quote-text">
     #{text}
@@ -42,7 +42,7 @@ class Tag
         %{
 <div class="quote">
   <div class="quote-original-poster">
-    Originally posted by <a href="#">#{options.first}</a> (<a href="#{options.last}">Go to post</a>)
+    Originally posted by <a href="#">#{options.first}</a> (<a href="posts/#{options.last}">Go to post</a>)
   </div>
   <div class="quote-text">
     #{text}
