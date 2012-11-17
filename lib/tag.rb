@@ -13,7 +13,6 @@ class Tag
     when "b"      then %{<strong>#{text}</strong>}
     when "u"      then %{<span class="underline">#{text}</span>}
     when "s"      then %{<span class="strikethrough">#{text}</span>}
-    when "center" then %{<center>#{text}</center>}
     when "size"   then %{<span class="size-#{options.first}">#{text}</span>}
     when "color"  then %{<span style="color: #{options.first};">#{text}</span>}
     when "font"   then %{<span style="font-family: #{options.first};">#{text}</span>}
