@@ -1,7 +1,9 @@
 .rendered {
-  .underline { 
-    text-decoration: underline; 
-  }
+
+  // underline
+  .underline { text-decoration: underline; }
+
+  // quote
   .quote {
     border: 1px solid black;
     margin: 10px;
@@ -13,5 +15,14 @@
       padding: 5px;
     }
   }
+
+  // left, right, center
+  @mixin align($direction) {
+    width: 100%;
+    text-align: $direction;
+  }
+  .align-left   { @include align(left); }
+  .align-right  { @include align(right); }
+  .align-center { @include align(center); }
 }
 

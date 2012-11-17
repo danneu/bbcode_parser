@@ -14,6 +14,16 @@ class Tag
     when "u"      then %{<span class="underline">#{text}</span>}
     when "center" then %{<center>#{text}</center>}
     when "size"   then %{<span class="size-#{options.first}">#{text}</span>}
+    when "color"  then %{<span style="color: #{options.first};">#{text}</span>}
+    when "font"   then %{<span style="font-family: #{options.first};">#{text}</span>}
+    when "left"   then %{<div class="align-left">#{text}</div>}
+    when "right"  then %{<div class="align-right">#{text}</div>}
+    when "center" then %{<div class="align-center">#{text}</div>}
+    when "url"  
+      case options.count
+      when 0 then %{<a href="#{text}" rel="nofollow">#{text}</a>}
+      when 1 then %{<a href="#{options.first}" rel="nofollow">#{text}</a>}
+      end
     when "quote" 
       if options.count == 0
         %{

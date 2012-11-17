@@ -1,6 +1,7 @@
 require 'parslet'
 
 class BBCode < Parslet::Parser
+  TAGS = %w[b i u font quote color left right center url]
   rule(:space) { str(' ').repeat(1) }
   rule(:space?) { space.maybe }
   rule(:newline) { (str("\r\n") | str("\n")) >> space? }
@@ -10,7 +11,7 @@ class BBCode < Parslet::Parser
   # === BBCODE OPTIONS ===
   # [bbcode=a;b;c] => options: [option, option, option]
   # [bbcode]       => options: [] 
-  rule(:option) { match['a-zA-Z0-9 '].repeat(1) }
+  rule(:option) { match['a-zA-Z0-9 \:\/\.'].repeat(1) }
   rule(:option_delimiter) { str('=') | str(';') }
   rule(:options) { (option_delimiter >> option.as(:option)).repeat(1) }
   rule(:options?) { options.repeat(0, 1) }
@@ -23,12 +24,11 @@ class BBCode < Parslet::Parser
 
   #rule(:close) { str('[/') >> tag_name.as(:close) >> str(']') }
 
-  rule(:b) { str("b") }
-  rule(:i) { str("i") }
-  rule(:u) { str("u") }
-  rule(:quote) { str("quote") }
-  rule(:inline_tag) { b | i | u }
-  rule(:block_tag) { quote }
+  TAGS.each do |bbcode|
+    rule(bbcode.to_sym) { str(bbcode) } 
+  end
+  rule(:inline_tag) { b | i | url | u | color | font }
+  rule(:block_tag) { quote | left | right | center }
   rule(:tag) { inline_tag | block_tag }
   rule(:inline_close) { str('[/') >> inline_tag.as(:close) >> str(']') }
   # We distinguish between inline [b][/b] tags and block [quote][/quote] tags so
