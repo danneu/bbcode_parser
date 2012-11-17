@@ -11,5 +11,45 @@
       e.preventDefault();
       $(".toggleable").toggle();
     });
+
+    $("#clear").click(function(e) {
+      e.preventDefault();
+      $("#bbcode-input").val('');
+    });
+
+    $("#example1").click(function(e) {
+      e.preventDefault();
+      var bbcode = [
+        "[quote=Barack Obama;78]",
+        "[center]I am [i][color=red]president[/color][/i].[/center]",
+        "[/quote]",
+        "",
+        "That's a [b]good point[/b], Mr. President."
+      ].join("\n")
+      $("#bbcode-input").val(bbcode); 
+    });
+
+    $("#example2").click(function(e) {
+      e.preventDefault();
+      var bbcode = [
+        "[quote=Some Guy][quote=Billy Bob;23432][left] [color=red]",  
+        "AAAA[u]AAAA[s]AAAAAAAAA[/s][/u]AAA[/color][/left]",
+        "[center]B[color=purple]BBB[font=courier]BBBBBBBBBBBBB[/font][/color]BBB [/center][/quote]",
+        "[quote][right] [color=orange]CCC[/color]CC[b]CCCCCCCCC[/b]",
+        "C[color=green]CCCCC[/color][/right][/quote][url]google.com",
+        "[/url][/quote]"
+      ].join("\n")
+      $("#bbcode-input").val(bbcode); 
+    });
+
+    $("#example3").click(function(e) {
+      e.preventDefault();
+      var bbcode = [
+        "[quote][quote][quote][quote][quote][quote][quote][quote][quote][quote]",
+        "^_^",
+        "[/quote][/quote][/quote][/quote][/quote][/quote][/quote][/quote][/quote][/quote]"
+      ].join("\n")
+      $("#bbcode-input").val(bbcode); 
+    });
   });
 </script>

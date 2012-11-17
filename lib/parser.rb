@@ -20,7 +20,7 @@ class BBCode < Parslet::Parser
   rule(:options?) { options.repeat(0, 1) }
 
   # === STRINGS - ALLOWED CHARACTERS ===
-  rule(:printable_char) { match['[:word:]'] | match['[:punct:]'] } # [Letters, numbers, underscores] [Punctuation and symbols]
+  rule(:printable_char) { match['[:word:]'] | match['[:punct:]'] | str('^') } # [Letters, numbers, underscores] [Punctuation and symbols]
   rule(:tag_options) { match['a-zA-Z0-9 '].repeat(1) }
   rule(:tag_name)    { match['a-zA-Z'].repeat(1) }
   #rule(:text){ (match["a-zA-Z\.\:\,\"\!\'"] | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
