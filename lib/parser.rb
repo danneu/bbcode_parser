@@ -18,7 +18,8 @@ class BBCode < Parslet::Parser
   # === STRINGS - ALLOWED CHARACTERS ===
   rule(:tag_options) { match['a-zA-Z0-9 '].repeat(1) }
   rule(:tag_name)    { match['a-zA-Z'].repeat(1) }
-  rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | (((str("\r\n") | str("\n")).as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
+  #rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | ((br.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
+  rule(:text){ (match['a-zA-Z\.\:\,'] | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
 
   #rule(:close) { str('[/') >> tag_name.as(:close) >> str(']') }
 
@@ -39,7 +40,8 @@ class BBCode < Parslet::Parser
   rule(:close) { block_close | inline_close }
     
 
-  rule(:block) { (open >> (block | text >> (space | newline.repeat(1)).maybe).repeat.as(:inner) >> whitespace.maybe >> close) }
+  #rule(:block) { (open >> (block | text >> (space | newline.repeat(1)).maybe).repeat.as(:inner) >> whitespace.maybe >> close) }
+  rule(:block) { (open >> (block | text).repeat.as(:inner) >> whitespace.maybe >> close) }
   rule(:body) { (block | text).repeat.as(:body) }
   root(:body)
 
