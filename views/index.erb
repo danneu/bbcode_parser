@@ -214,9 +214,11 @@ colored text
 </table>
 <a class="toggle-cheatsheet toggleable" href="#">Hide Cheatsheet</a>
 </div>
+<!-- /cheatsheet -->
 
+
+<% if @bbcode %>
 <hr />
-
 <div class="group">
   <h2>Actual HTML</h2>
   <pre class="output">
@@ -248,4 +250,9 @@ colored text
     <%= $>.string %>
     <% $> = old_stdout %>
   </div>
+</div>
+<% end %>
+
+<div id="footer">
+  By <a href="http://danneu.com">danneu</a>. Source at <a href="">danneu/bbcode_parser</a>.
 </div>
