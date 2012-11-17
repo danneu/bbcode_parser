@@ -1,6 +1,6 @@
 require 'parslet'
 
-class BBCode < Parslet::Parser
+class BBCodeParser < Parslet::Parser
   TAGS = %w[b i u s font quote color left right center url]
   TAGS.each do |bbcode|
     rule(bbcode.to_sym) { str(bbcode) } 
@@ -23,9 +23,7 @@ class BBCode < Parslet::Parser
   rule(:printable_char) { match['[:word:]'] | match['[:punct:]'] | str('^') } # [Letters, numbers, underscores] [Punctuation and symbols]
   rule(:tag_options) { match['a-zA-Z0-9 '].repeat(1) }
   rule(:tag_name)    { match['a-zA-Z'].repeat(1) }
-  #rule(:text){ (match["a-zA-Z\.\:\,\"\!\'"] | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
-  #rule(:text){ (printable_char | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
-  rule(:text){ (close.absent? >> block.absent? >> printable_char | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
+  rule(:text){ ( (close|block).absent? >> printable_char | space).repeat(1).as(:text) | ((newline.as(:break) >> space?).repeat(1,2).as(:breaks) >> whitespace.maybe)  }
 
   rule(:inline_tag) { b | i | url | u | s | color | font }
   rule(:block_tag) { quote | left | right | center }

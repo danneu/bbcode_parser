@@ -14,11 +14,11 @@ helpers do
 
   def parse(bbcode)
     transformer = BBCodeTransformer.new
-    transformer.apply(BBCode.parse(bbcode))
+    transformer.apply(BBCodeParser.parse(bbcode))
   end
 
   def tree(bbcode)
-    BBCode.parse(bbcode)
+    BBCodeParser.parse(bbcode)
   end
 
   def highlight(html)

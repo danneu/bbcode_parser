@@ -90,7 +90,7 @@
         
     Should become:
     
-        <strong>abc <em>def</strong> ghi</em>
+        <strong>abc <em>def</em></strong> <em>ghi</em>
         
     But at the moment the parser produces a tree like:
     
