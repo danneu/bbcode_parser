@@ -31,17 +31,17 @@
 
 1. The parser (lib/parser.rb), where the grammar rules are defined, reads a string of user text and outputs a syntax tree.
 
-       [b]hello[/b]goodbye
+        [b]hello[/b]goodbye
        
    …becomes:
    
-       body:
-         open: "b"
-         inner: [
-           text: "hello"
-         ]
-         close: "b"
-         text: "goodbye"
+        body:
+          open: "b"
+          inner: [
+            text: "hello"
+          ]
+          close: "b"
+          text: "goodbye"
          
 * The transformer (lib/transformer.rb) applies transformation rules to the tree by starting at the tree's leaves/subtrees and collapsing them into strings/html.
 
