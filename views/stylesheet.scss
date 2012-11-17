@@ -6,13 +6,11 @@
 }
 pre { margin: 0; }
 textarea { width: 50%; display: block; }
-.output { 
-  padding: 10px; 
-}
 .tree-ap { pre { display: inline; } }
 .output {
   border: solid black 1px;
   background: white;
+  padding: 10px; 
 }
 .group {
   background: black;

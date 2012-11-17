@@ -3,6 +3,7 @@ GEM
   specs:
     awesome_print (1.1.0)
     blankslate (2.1.2.4)
+    coderay (1.0.8)
     daemons (1.1.9)
     eventmachine (1.0.0)
     parslet (1.4.0)
@@ -28,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  coderay
   parslet
   sass
   shotgun
