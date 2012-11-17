@@ -13,20 +13,20 @@
 
 **For an intuitive inventory, view the cheatsheet on the [live demo][demo].**
 
-* [b]bold[/b]
-* [i]italicize[/i]
-* [u]underline[/u]
-* [s]strikethrough[/s]
-* [quote]text[/quote]
-* [quote=Barack Obama]text with username reference[/quote]
-* [quote=Barack Obama;2342]text with username and post ID reference[/quote]
-* [left]left-align[/left]
-* [right]right-align[/right]
-* [center]center-align[/center]
-* [color=blue]colored text[/color]
-* [url]http://google.com[/url]
-* [url=http://google.com]Click Me![/url]
-* [img]http://website.com/image.jpg[/img]
+* `[b]bold[/b]`
+* `[i]italicize[/i]`
+* `[u]underline[/u]`
+* `[s]strikethrough[/s]`
+* `[quote]text[/quote]`
+* `[quote=Barack Obama]text with username reference[/quote]`
+* `[quote=Barack Obama;2342]text with username and post ID reference[/quote]`
+* `[left]left-align[/left]`
+* `[right]right-align[/right]`
+* `[center]center-align[/center]`
+* `[color=blue]colored text[/color]`
+* `[url]http://google.com[/url]`
+* `[url=http://google.com]Click Me![/url]`
+* `[img]http://website.com/image.jpg[/img]`
 
 ## How it works
 
