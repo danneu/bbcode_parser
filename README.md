@@ -53,7 +53,7 @@
           inner: [
             text: "hello"
           ]  
-          cose: "b"
+          close: "b"
           
     …first, `inner: { text: "hello" }` is collapsed into `inner: ["hello"]` because of the rule that collapses text nodes into strings:
     
